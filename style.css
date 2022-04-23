@@ -1,0 +1,384 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400&family=Poiret+One&family=Shadows+Into+Light&display=swap");
+/* variables */
+:root {
+  --primaryColor: red;
+  --mainBlack: black;
+  --mainWhite: #fff;
+  --darkGrey: #afafaf;
+  --offWhite: #f7f7f7;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 0.2rem;
+}
+/* global styles  */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Fira Code", monospace;
+  color: var(--mainBlack);
+  background: var(--mainWhite);
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+  margin-bottom: 1.25rem;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+p {
+  font-weight: 300;
+  font-size: 0.7rem;
+  line-height: 2;
+}
+
+/* start of Button */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  text-transform: capitalize;
+  border: 3px solid var(--primaryColor);
+  margin: 3rem;
+  transition: var(--mainTransition);
+}
+.btn:hover {
+  background: var(--primaryColor);
+  color: var(--mainWhite);
+}
+
+/* Start of Main Navbar  */
+/* normalde ul a bir class ekleyip oradan da işlem yapabilirsin hemen main navbar altındaki ama burada main navbarı seçiyor */
+.main-navbar {
+  background: greenyellow;
+  padding: 0 2rem;
+}
+.main-navbar li {
+  list-style: none;
+  /* böylece noktalar gitti */
+}
+
+.main-navbar a {
+  text-transform: capitalize;
+  display: block;
+  padding: 1rem 0;
+  color: blue;
+  letter-spacing: var(--mainSpacing);
+  transition: var(--mainTransition);
+}
+.main-navbar a:hover {
+  color: var(--mainBlack);
+}
+@media screen and (min-width: 992px) {
+  .main-navbar ul {
+    /* hero cards gibi linkler çok genişlemecek mks bu kadar  */
+    max-width: 1170px;
+    margin: 0 auto;
+
+    /* unordered list düzgün çalışıyor ama linkler yani list üst üste duruyor bunu grid ile düzzelteceğiz zaten ul  parent conrtainer o yüzden burada kullanabiliriz  grid  işlemini*/
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .main-navbar a {
+    text-align: center;
+  }
+}
+/* ........................................ */
+/* START OF HERO */
+.hero-header {
+  min-height: 100vh;
+  background: var(--primaryColor);
+  color: var(--mainWhite);
+  display: grid;
+  justify-content: center;
+  /* horizontal center */
+  align-items: center;
+  /* stretch özelliğini kaybedip daralarak merkeze oturuyor */
+  /* normalde içerideki welcome yazısı da merkeze otururdu ama hero header dan sonra  arada hero banner parenti var  doğrudan direk h1 olsa headerdan sonra otururdu merkeze her neyse texti oturtabilmek için ise  hero banner parentina  text align center yapıyoruz */
+}
+.hero-banner {
+  text-align: center;
+}
+
+.hero-banner p {
+  width: 80%;
+  max-width: 560px;
+  /* ekranım büyüdükçe 560px  yazım  daha fazla genişleyip dağılmasın */
+  font-size: 1rem;
+}
+@media screen and (max-width: 600px) {
+  .hero-banner {
+    padding: 0 3rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .hero-header {
+    background: linear-gradient(rgba(241, 80, 37, 0.75), rgba(0, 0, 0, 0.75)),
+      url("./images/image-2.jpeg") center/cover fixed no-repeat;
+  }
+}
+/* ........................................... */
+/* Start of Cards */
+.cards {
+  padding: 4rem 0;
+}
+.title {
+  text-align: center;
+}
+
+/* css grid parent olarak çalışacak */
+.cards-center {
+  width: 80vw;
+  max-width: 1170px;
+  margin: 2rem auto;
+}
+.card {
+  border: 1px solid var(--darkGrey);
+  margin-bottom: 3rem;
+}
+.card-info {
+  padding: 1rem;
+}
+.card-footer {
+  background: rgba(0, 0, 255, 0.151);
+  padding: 0.5rem 1rem;
+}
+.card-footer span {
+  color: var(--primaryColor);
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+}
+/* ........................................................... */
+/* @media screen and (min-width: 768px) {
+  .cards-center {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+  }
+}
+
+@media screen and (min-width: 1170px) {
+  .cards-center {
+    grid-template-columns: repeat(3, 1fr);
+  }
+} */
+
+/* ............................. */
+/* şimdi ise media querysi olmadan  two 3 1 column layoutlar yapma zamanı */
+
+/* your max 1170  you are 3 columns and gap is 2rem(16px * 2 =32 ) iki kolon boşluk olduğuna göre 64 px */
+/* (1170-64) /3(column number)  =368.6666px */
+/* 1170-96 / 4 =268.5px */
+/* yukardaki media query yerine 3 satır kod işi hallediyor */
+
+.cards-center {
+  display: grid;
+  column-gap: 2rem;
+  /* grid-template-columns: repeat(auto-fill, minmax(368.66px, 1fr)); */
+  grid-template-columns: repeat(auto-fill, minmax(268.5px, 1fr));
+}
+/* eğer 4 kart değil bir kart olsa auto fit yapıp ortalaman lazım  */
+/* tek kart dikkat tek kartları ayrı ayrı target yapıyour farz etki diyor bir kartın içinde paragraf yazısı lorem 60 diğerlerinde 20 anlamsız bir görüntü çıkmamamsı için hepsini esnek yapıyor böylece aşağıdaki kodla */
+.card {
+  display: grid;
+  /* her kartta bir colum var ama resim yazı  logo- img footer birden fazla row var  */
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  /* img auto  footer auto ama ortadaki boş yer 1fr genişliyor */
+}
+/* ------------------------------------------- */
+/* Start of Tiles */
+.tiles {
+  padding: 4rem 0;
+}
+.tiles-center {
+  width: 90vw;
+  max-width: 1170px;
+  margin: 2rem auto;
+  display: grid;
+  row-gap: 2rem;
+}
+@media screen and (min-width: 768px) {
+  /* 768 pixelin üstü hep 2 layout altı daha düşük */
+  .tiles-center {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .tiles-center {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/* şimdi 4 column 5 rowluk bir resim mozaiği yapacağız */
+@media screen and (min-width: 1170px) {
+  .tiles-center {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 200px);
+    grid-template-areas:
+      "a a a b"
+      "a a a c"
+      "d d d d"
+      "e f f f"
+      "e g h i";
+  }
+  .tiles img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.tile-1 {
+  grid-area: a;
+}
+.tile-2 {
+  grid-area: b;
+}
+.tile-3 {
+  grid-area: c;
+}
+.tile-4 {
+  grid-area: d;
+}
+.tile-5 {
+  grid-area: e;
+}
+.tile-6 {
+  grid-area: f;
+}
+.tile-7 {
+  grid-area: g;
+}
+.tile-8 {
+  grid-area: h;
+}
+.tile-9 {
+  grid-area: i;
+}
+/* ................................................... */
+/* Start of Layout */
+.header {
+  background: var(--primaryColor);
+  color: var(--mainWhite);
+  text-align: center;
+  padding: 0.5rem 0;
+}
+.navbar {
+  background: #afafaf;
+}
+.navbar li {
+  list-style-type: none;
+}
+.navbar a {
+  padding: 1rem;
+  display: inline-block;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+  font-size: 1.2rem;
+  color: var(--mainBlack);
+  transition: var(--mainTransition);
+}
+.navbar a:hover {
+  color: var(--mainWhite);
+}
+.content {
+  padding: 2rem;
+}
+.content p {
+  font-size: 1rem;
+}
+.sidebar {
+  background: var(--primaryColor);
+  color: #fff;
+  padding: 1rem 0;
+}
+.sidebar span {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  font-size: 1.5rem;
+}
+.footer {
+  background: var(--mainBlack);
+  color: #f7f7f7;
+  text-align: center;
+  text-transform: capitalize;
+  padding: 1rem 0;
+}
+footer p {
+  font-size: 1.2rem;
+}
+
+/* farz et ki yazı az  o zaman content sayfada çok az yer tutuyor ama content penceresi çok küçük duruyor her halukarda yazının olduğu contenti büğyük tutmak lazım */
+.main {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto auto;
+}
+@media screen and (min-width: 768px) {
+  .navbar ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+  }
+}
+/* grid line definition design--- 3 colum 3 rows design */
+@media screen and (min-width: 992px) {
+  .main {
+    grid-template-columns: [start] 200px [col-1-end] 1fr [col-2-end] 50px [end];
+    grid-template-rows: [start] auto [row-1-end] 1fr [row-2-end] auto [end];
+  }
+  .header {
+    grid-column: start/end;
+    grid-row: start/row-1-end;
+  }
+  .navbar {
+    grid-column: start/col-1-end;
+    grid-row: row-1-end/row-2-end;
+  }
+  .content {
+    grid-column: col-1-end/col-2-end;
+    grid-row: row-1-end/row-2-end;
+  }
+  .sidebar {
+    grid-column: col-2-end/end;
+    grid-row: row-1-end/row-2-end;
+  }
+  .footer {
+    grid-column: start/end;
+    grid-row: row-2-end/end;
+  }
+  .navbar ul {
+    grid-template-columns: 1fr;
+    align-items: center;
+    min-height: 100%;
+  }
+  .sidebar span {
+    grid-template-columns: 1fr;
+    align-items: center;
+    min-height: 100%;
+  }
+}
